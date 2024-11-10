@@ -54,7 +54,7 @@ const Team: React.FC<TeamProps> = ({
   return (
     <div className="relative">
       <img src={"/image/Field.svg"} alt="logo" className="h-full" />
-      <div className={`absolute top-0 flex h-full gap-[63px] w-full p-5 ${hide ? "hidden" : "block"}`}>
+      <div className={`absolute top-0 flex h-full gap-[43px] w-full p-5 ${hide ? "hidden" : "block"}`}>
         <div className="flex flex-col gap-2 justify-center text-center">
           <Player
             number={player1.number}

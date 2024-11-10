@@ -46,18 +46,24 @@ const FormationFiledTemplate = () => {
           if (!selectedGoalkeeper) {
             selectedGoalkeeper = player;
           }
-        } else if (player.position === "Defender")
+        }
+        else if (player.position === "Defender") {
           positionCounts.Defender += 1;
-        if (selectedDefenders.length < 4) {
-          selectedDefenders.push(player);
-        } else if (player.position === "Midfielder")
+          if (selectedDefenders.length < 4) {
+            selectedDefenders.push(player);
+          }
+        }
+        else if (player.position === "Midfielder") {
           positionCounts.Midfielder += 1;
-        if (selectedMidfielders.length < 3) {
-          selectedMidfielders.push(player);
-        } else if (player.position === "Forward")
+          if (selectedMidfielders.length < 3) {
+            selectedMidfielders.push(player);
+          }
+        }
+        else if (player.position === "Forward") {
           positionCounts.Forward += 1;
-        if (selectedForwards.length < 3) {
-          selectedForwards.push(player);
+          if (selectedForwards.length < 3) {
+            selectedForwards.push(player);
+          }
         }
       }
     }
@@ -160,9 +166,8 @@ const FormationFiledTemplate = () => {
   const Midfielder = MidfielderLen == 3;
   const Forward = ForwardLen == 3;
   let isvalid = true;
-  if (!(GoalkeeperLen && Defender && Midfielder && Forward))
+  if (!(Goalkeeper && Defender && Midfielder && Forward))
     isvalid = false
-
   return (
     <>
       <div className="bg-[#2d2d2d] p-8 mt-6">
