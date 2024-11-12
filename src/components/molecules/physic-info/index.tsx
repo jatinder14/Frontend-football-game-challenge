@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 
-
 interface PlayerStats {
   appearances: number;
   minutesPlayed: number;
@@ -10,7 +9,6 @@ interface PlayerStats {
   assists?: number | null;
 }
 
-
 interface PlayerInfoProps {
   name: string;
   position: string;
@@ -19,22 +17,18 @@ interface PlayerInfoProps {
   nationality: string;
   flagSrc: string;
   pictureSrc: string;
-  numberSrc: string;
   hide: boolean;
   stats: PlayerStats;
+  jrsyNumber:any;
 }
 
-
-
-
 const PlayerHeader: React.FC<{
-  numberSrc: string;
   pictureSrc: string;
   name: string;
   position: string;
-}> = ({ numberSrc, pictureSrc, name, position }) => {
+  jrsyNumber?:any
+}> = ({  pictureSrc, name, position,jrsyNumber }) => {
   const imgRef = useRef<HTMLImageElement>(null);
-
 
   const handleError = () => {
     if (imgRef.current) {
@@ -42,17 +36,20 @@ const PlayerHeader: React.FC<{
     }
   };
 
-
   useEffect(() => {
     const img = new Image();
     img.src = "/image/test-player.png";
   }, []);
 
-
   return (
     <>
       <div className="flex items-start">
-        <img src={numberSrc} alt="player number" className="w-[50px]" />
+        <div className="flex flex-col relative">
+          <h3 className="text-8xl font-bold text-[#2e2d29]">{jrsyNumber}</h3>
+          <h5 className="text-4xl font-bold absolute top-[33px] -left-4px text-primary">
+           {jrsyNumber}
+          </h5>
+        </div>
         <img
           ref={imgRef}
           src={pictureSrc}
@@ -70,9 +67,6 @@ const PlayerHeader: React.FC<{
     </>
   );
 };
-
-
-
 
 const PlayerPhysicalInfo: React.FC<{
   height: string;
@@ -105,14 +99,13 @@ const PlayerPhysicalInfo: React.FC<{
   </div>
 );
 
-
 const PlayerStatsComponent: React.FC<PlayerStats> = ({
   appearances,
   minutesPlayed,
   cleanSheets,
   saves,
   goals,
-  assists
+  assists,
 }) => (
   <div className="grid grid-cols-2 items-center mt-6 ">
     <div className="flex flex-col gap-1">
@@ -147,11 +140,8 @@ const PlayerStatsComponent: React.FC<PlayerStats> = ({
         {saves ? "Saves" : "Assists"}
       </h4>
     </div>
-
-
   </div>
 );
-
 
 export const PlayerInfo: React.FC<PlayerInfoProps> = ({
   name,
@@ -161,15 +151,15 @@ export const PlayerInfo: React.FC<PlayerInfoProps> = ({
   nationality,
   flagSrc,
   pictureSrc,
-  numberSrc,
+  jrsyNumber,
   stats,
-  hide
+  hide,
 }) => (
   <div className="bg-[#222222] w-[322px] p-6">
-    {
-      hide && <>
+    {hide && (
+      <>
         <PlayerHeader
-          numberSrc={numberSrc}
+          jrsyNumber={jrsyNumber}
           pictureSrc={pictureSrc}
           name={name}
           position={position}
@@ -180,12 +170,8 @@ export const PlayerInfo: React.FC<PlayerInfoProps> = ({
           nationality={nationality}
           flagSrc={flagSrc}
         />
-        <PlayerStatsComponent {...stats} /></>
-    }
-
-
+        <PlayerStatsComponent {...stats} />
+      </>
+    )}
   </div>
 );
-
-
-

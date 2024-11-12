@@ -249,7 +249,7 @@ const FormationFiledTemplate = () => {
             nationality={playerData?.nationality}
             flagSrc={playerData?.flagImg}
             pictureSrc={playerData?.playerImg || "/image/test-player.png"}
-            numberSrc="/image/player-number.svg"
+            jrsyNumber={playerData.jerseyNumber}
             stats={playerStats}
           />
         </div>
